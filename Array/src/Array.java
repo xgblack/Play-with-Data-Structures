@@ -75,12 +75,15 @@ public class Array<E> {
      * @param e
      */
     public void add(int index,E e) {
-        if (size == data.length) {
-            throw new IllegalArgumentException("添加元素失败，数组满了");
-        }
+
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("添加元素失败，索引需>=0,<=size");
         }
+        if (size == data.length) {
+            //扩容
+            resize(2 * data.length);
+        }
+
         for (int i = size - 1; i >= index; i--) {
             data[i + 1] = data[i];
         }
@@ -146,6 +149,12 @@ public class Array<E> {
         size --;
         //不写没有问题
         data[size] = null;
+
+        //容量缩减
+        if (size == data.length / 2) {
+            resize(data.length / 2);
+        }
+
         return ret;
     }
 
@@ -163,6 +172,19 @@ public class Array<E> {
             return true;
         }
         return false;
+    }
+
+
+    /**
+     * 改变容量
+     * @param newCapacity
+     */
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
     @Override
