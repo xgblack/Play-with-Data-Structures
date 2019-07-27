@@ -101,7 +101,7 @@
 | 4-7 带有尾指针的链表：使用链表实现队列 | [Java](04-Linked-List/07-Implement-Queue-in-LinkedList/src/) | 
 | **第五章 透过链表看递归** | [章节Java源码](05-Recursion/) |
 | 5-1 Leetcode中和链表相关的问题 | [Java](05-Recursion/01-Linked-List-Problems-in-Leetcode/src/) |
-| 5-2 测试自己的Leetcode链表代码 | [Java](05-Recursion/02-Test-Your-LinkedList-Solution/src/) | 
+| 5-2 测试自己的Leetcode链表代码 | [Java](05-Recursion/02-TestQueue-Your-LinkedList-Solution/src/) | 
 | 5-3 递归基础与递归的宏观语意 | [Java](05-Recursion/03-Recursion-Basics/src/) | 
 | 5-4 链表与递归 | [Java](05-Recursion/04-LinkedList-and-Recursion/src/) | 
 | 5-5 递归运行的机制：递归的微观解读 | [无代码] | 

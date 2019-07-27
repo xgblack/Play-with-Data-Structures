@@ -202,4 +202,12 @@ public class Array<E> {
 
         return res.toString();
     }
+
+    public E getFirst(){
+        return get(0);
+    }
+    public E getLast(){
+        return get(size - 1);
+    }
+
 }
