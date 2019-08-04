@@ -20,6 +20,10 @@ public class TestQueue {
         LoopQueue<Integer> loopQueue = new LoopQueue<>();
         double time2 = testQueue(loopQueue,opCount);
         System.out.println("LoopQueue   time:" + time2);
+
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+        double time3 = testQueue(linkedListQueue, opCount);
+        System.out.println("LinkedListQueue   time:" + time3);
     }
 
     private static double testQueue(Queue<Integer> q, int opCount) {
