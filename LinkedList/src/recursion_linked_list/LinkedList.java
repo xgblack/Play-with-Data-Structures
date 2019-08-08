@@ -1,8 +1,12 @@
+package recursion_linked_list;
+
+import javafx.util.Pair;
+
 /**
  * @author 小光
- * @date 2019/8/3 18:33
+ * @date 2019/8/7 18:50
  * className: LinkedList
- * description: 单链表
+ * description: 单链表，使用递归算法实现增删改查的链表
  * ***************************************************************************
  * Copyright(C),2018-2019,https://blog.xgblack.cn  .All rights reserved.
  * ***************************************************************************
@@ -35,11 +39,11 @@ public class LinkedList<E> {
         }
     }
 
-    private Node dummyHead;
+    private Node head;
     private int size;
 
     public LinkedList(){
-        dummyHead = new Node(null,null);
+        head = null;
         size = 0;
     }
 
@@ -70,16 +74,17 @@ public class LinkedList<E> {
             throw new IllegalArgumentException("Add failed.Illegal index");
         }
 
-        Node prev = dummyHead;
-        for (int i = 0; i < index ; i++) {
-            prev = prev.next;
-        }
-
-        //Node node = new Node(e, prev.next);
-        //prev.next = node;
-
-        prev.next = new Node(e,prev.next);
+        head = add(head, index, e);
         size ++;
+
+    }
+
+    private Node add(Node node, int index, E e) {
+        if (index == 0) {
+            return new Node(e, node);
+        }
+        node.next = add(node.next, index - 1, e);
+        return node;
 
     }
 
@@ -112,11 +117,15 @@ public class LinkedList<E> {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Add failed.Illegal index");
         }
-        Node cur = dummyHead.next;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
+        return get(head, index);
+
+    }
+
+    private E get(Node node, int index) {
+        if (index == 0) {
+            return node.e;
         }
-        return cur.e;
+        return get(node.next, index - 1);
     }
 
     public E getFirst(){
@@ -135,27 +144,34 @@ public class LinkedList<E> {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Add failed.Illegal index");
         }
+        set(head,index,e);
 
-        Node cur = dummyHead.next;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
+    }
+
+    private void set(Node node, int index, E e) {
+        if (index == 0) {
+            node.e = e;
+            return;
         }
-        cur.e = e;
+        set(node.next,index - 1,e);
     }
 
     /**
      * 查找链表是否存在元素e
      */
     public boolean contains(E e) {
-        Node cur = dummyHead.next;
-        while (cur != null) {
-            if (cur.e == e) {
-                return true;
-            } else {
-                cur = cur.next;
-            }
+
+        return contains(head,e);
+    }
+
+    private boolean contains(Node node, E e) {
+        if (node == null) {
+            return false;
         }
-        return false;
+        if (node.e.equals(e)) {
+            return true;
+        }
+        return contains(node.next, e);
     }
 
     /**
@@ -164,19 +180,21 @@ public class LinkedList<E> {
      */
     public E remove(int index) {
         if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Delete failed.Illegal index");
+            throw new IllegalArgumentException("Add failed.Illegal index");
         }
-
-        Node prev = dummyHead;
-        for (int i = 0; i < index; i++) {
-            prev = prev.next;
-        }
-        Node retNode = prev.next;
-        prev.next = retNode.next;
-        retNode.next = null;
-
+        Pair<Node, E> res = remove(head, index);
         size --;
-        return retNode.e;
+        head = res.getKey();
+        return res.getValue();
+    }
+
+    private Pair<Node, E> remove(Node node,int index) {
+        if (index == 0) {
+            return new Pair<>(node.next, node.e);
+        }
+        Pair<Node, E> res = remove(node.next, index - 1);
+        node.next = res.getKey();
+        return new Pair<>(node,res.getValue());
     }
 
     public E removeFirst() {
@@ -187,19 +205,46 @@ public class LinkedList<E> {
         return remove(size - 1);
     }
 
+    public void removeElement(E e){
+        head = removeElement(head, e);
+    }
+
+    private Node removeElement(Node node, E e) {
+        if (node == null) {
+            return null;
+        }
+        if (node.e.equals(e)) {
+            size --;
+            return node.next;
+        }
+        return removeElement(node.next,e);
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
 
-        //Node cur = dummyHead.next;
-        //while (cur != null) {
-        //    res.append(cur.e + "->");
-        //    cur = cur.next;
-        //}
-        for (Node cur = dummyHead.next; cur != null; cur = cur.next) {
+        Node cur = head;
+        while (cur != null) {
             res.append(cur.e + "->");
+            cur = cur.next;
         }
         res.append("NULL");
         return res.toString();
+    }
+
+
+
+    public static void main(String[] args) {
+
+        LinkedList<Integer> list = new LinkedList<>();
+        for(int i = 0 ; i < 10 ; i ++) {
+            list.addFirst(i);
+            System.out.println(list);
+        }
+
+        while(!list.isEmpty()) {
+            System.out.println("removed " + list.removeLast());
+        }
     }
 }
