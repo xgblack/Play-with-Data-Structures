@@ -1,3 +1,4 @@
+
 /**
  * @author 小光
  * @date 2019/8/3 18:33
@@ -30,5 +31,9 @@ public class Main {
         linkedList.removeLast();
         System.out.println(linkedList);
         System.out.println(linkedList.getSize());
+
+        linkedList.removeElement(1);
+        System.out.println(linkedList);
+
     }
 }

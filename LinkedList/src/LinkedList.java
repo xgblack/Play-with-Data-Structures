@@ -110,7 +110,7 @@ public class LinkedList<E> {
      */
     public E get(int index) {
         if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Add failed.Illegal index");
+            throw new IllegalArgumentException("Get failed.Illegal index");
         }
         Node cur = dummyHead.next;
         for (int i = 0; i < index; i++) {
@@ -133,7 +133,7 @@ public class LinkedList<E> {
      */
     public void set(int index,E e) {
         if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Add failed.Illegal index");
+            throw new IllegalArgumentException("Set failed.Illegal index");
         }
 
         Node cur = dummyHead.next;
@@ -185,6 +185,18 @@ public class LinkedList<E> {
 
     public E removeLast() {
         return remove(size - 1);
+    }
+
+    public void removeElement(E e) {
+        Node prev = dummyHead;
+        while (prev != null && prev.next != null) {
+            if (prev.next.e == e) {
+                Node delNode = prev.next;
+                prev.next = delNode.next;
+                delNode.next = null;
+            }
+            prev = prev.next;
+        }
     }
 
     @Override
