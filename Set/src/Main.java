@@ -1,6 +1,3 @@
-package BSTSet;
-
-
 import java.util.ArrayList;
 
 /**
@@ -44,3 +41,11 @@ public class Main {
         System.out.println("Total different words:" + set2.getSize());
     }
 }
+/*
+Price and Prejudice
+Total words:125901
+Total different words:6530
+A Tale of Two Cities
+Total words:141489
+Total different words:9944
+ */
