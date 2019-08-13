@@ -1,48 +1,47 @@
-package BSTSet;
+package LinkedListSet;
+
+import BSTSet.Set;
 
 /**
  * @author 小光
- * @date 2019/8/13 15:49
- * className: BSTSet
- * description: 使用二分搜索树实现的集合
+ * @date 2019/8/13 16:09
+ * className: LinkedListSet.LinkedListSet
+ * description: 基于链表的集合
  * ***************************************************************************
  * Copyright(C),2018-2019,https://blog.xgblack.cn  .All rights reserved.
  * ***************************************************************************
  */
-public class BSTSet<E extends Comparable<E>> implements Set<E> {
-    private BST<E> bst;
+public class LinkedListSet<E> implements Set<E> {
 
-    public BSTSet(){
-        bst = new BST<>();
+    private LinkedList<E> list;
+    public LinkedListSet(){
+        list = list = new LinkedList<E>();
     }
 
     @Override
     public void add(E e) {
-        bst.add(e);
+        if (!list.contains(e)) {
+            list.addFirst(e);
+        }
     }
 
     @Override
     public void remove(E e) {
-        bst.remove(e);
+        list.removeElement(e);
     }
 
     @Override
     public boolean contains(E e) {
-        return bst.contains(e);
+        return list.contains(e);
     }
 
     @Override
     public int getSize() {
-        return bst.size();
+        return list.getSize();
     }
 
     @Override
     public boolean isEmpty() {
-        return bst.isEmpty();
+        return list.isEmpty();
     }
-
-    /*@Override
-    public String toString() {
-        return super.toString();
-    }*/
 }

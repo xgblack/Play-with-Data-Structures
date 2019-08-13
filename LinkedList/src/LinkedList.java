@@ -149,7 +149,7 @@ public class LinkedList<E> {
     public boolean contains(E e) {
         Node cur = dummyHead.next;
         while (cur != null) {
-            if (cur.e == e) {
+            if (e.equals(cur.e)) {
                 return true;
             } else {
                 cur = cur.next;
@@ -190,7 +190,7 @@ public class LinkedList<E> {
     public void removeElement(E e) {
         Node prev = dummyHead;
         while (prev != null && prev.next != null) {
-            if (prev.next.e == e) {
+            if ( e.equals(prev.next.e)) {
                 Node delNode = prev.next;
                 prev.next = delNode.next;
                 delNode.next = null;
