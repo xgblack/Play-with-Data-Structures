@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Copyright(C),2018-2019,https://blog.xgblack.cn  .All rights reserved.
  * ***************************************************************************
  */
-public class TestLinkedListMap {
+public class TestBSTMap {
     public static void main(String[] args) {
         System.out.println("Pride and Prejudice");
 
@@ -17,7 +17,7 @@ public class TestLinkedListMap {
         if (FileOperation.readFile("Map/src/pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
-            LinkedListMap<String, Integer> map = new LinkedListMap<>();
+            BSTMap<String, Integer> map = new BSTMap<>();
 
             for (String word : words) {
                 if (map.contains(word)) {
