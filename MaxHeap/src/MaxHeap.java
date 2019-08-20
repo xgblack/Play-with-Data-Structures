@@ -13,6 +13,18 @@ public class MaxHeap<E extends Comparable<E>> {
     public MaxHeap(int capacity) {
         data = new Array<>(capacity);
     }
+
+    /**
+     * heapify
+     * @param arr
+     */
+    public MaxHeap(E[] arr) {
+        data = new Array<>(arr);
+        for (int i = parent(arr.length - 1); i >= 0; i--) {
+            siftDown(i);
+        }
+    }
+
     public MaxHeap() {
         data = new Array<>();
     }
@@ -37,9 +49,20 @@ public class MaxHeap<E extends Comparable<E>> {
         return (index - 1) / 2;
     }
 
+    /**
+     * 完全二叉树的数组表示中，一个索引所表示的元素的左孩子的索引
+     * @param index
+     * @return
+     */
     private int leftChild(int index) {
         return 2 * index + 1;
     }
+
+    /**
+     * 完全二叉树的数组表示中，一个索引所表示的元素的右孩子的索引
+     * @param index
+     * @return
+     */
     private int rightChild(int index) {
         return 2 * index + 2;
     }
@@ -49,6 +72,10 @@ public class MaxHeap<E extends Comparable<E>> {
         siftUp(data.getSize() - 1);
     }
 
+    /**
+     * 上浮操作
+     * @param k
+     */
     private void siftUp(int k) {
         while (k > 0 && data.get(parent(k)).compareTo(data.get(k)) < 0) {
             //上浮操作
@@ -56,6 +83,11 @@ public class MaxHeap<E extends Comparable<E>> {
             k = parent(k);
         }
     }
+
+    /**
+     * 找到最大元素
+     * @return
+     */
     public E findMax(){
         if (data.isEmpty()) {
             throw new IllegalArgumentException("Can not findMax when heap is empty");
@@ -63,6 +95,10 @@ public class MaxHeap<E extends Comparable<E>> {
         return data.get(0);
     }
 
+    /**
+     * 取出最大元素
+     * @return
+     */
     public E extractMax(){
         E ret = findMax();
         data.swap(0,data.getSize() - 1);
@@ -71,6 +107,10 @@ public class MaxHeap<E extends Comparable<E>> {
         return ret;
     }
 
+    /**
+     * 下沉操作
+     * @param k
+     */
     private void siftDown(int k) {
         while (leftChild(k) < data.getSize()) {
             int j = leftChild(k);
@@ -86,5 +126,18 @@ public class MaxHeap<E extends Comparable<E>> {
                 k = j;
             }
         }
+    }
+
+    /**
+     * 取出最大元素，并添加一个新元素
+     * @param e
+     * @return
+     */
+    public E replace(E e) {
+        E ret = findMax();
+
+        data.set(0, e);
+        siftDown(0);
+        return ret;
     }
 }
