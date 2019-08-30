@@ -44,8 +44,16 @@ public class TestMap {
         LinkedListMap<String, Integer> linkedListMap = new LinkedListMap<>();
         double time2 = testMap(linkedListMap, filename);
 
-        System.out.println("BSTMap:" + time1);
-        System.out.println("LinkedListMap:" + time2);
+        System.out.println("************************************************");
+
+        AVLMap<String, Integer> avlMap = new AVLMap<>();
+        double time3 = testMap(avlMap, filename);
+
+        System.out.println("================================================");
+
+        System.out.println("BSTMap :" + time1);
+        System.out.println("LinkedListMap :" + time2);
+        System.out.println("AVLMap :" + time3);
     }
 }
 /*
@@ -60,6 +68,14 @@ Total words: 125901
 Total different words: 6530
 Frequency of PRIDE : 53
 Frequency of PREJUDICE : 11
-BSTMap:0.216803
-LinkedListMap:15.5431947
+************************************************
+Map/src/pride-and-prejudice.txt
+Total words: 125901
+Total different words: 6530
+Frequency of PRIDE : 53
+Frequency of PREJUDICE : 11
+================================================
+BSTMap :0.2163573
+LinkedListMap :15.022752
+AVLMap :0.0997768
  */
