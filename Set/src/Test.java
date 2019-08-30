@@ -32,12 +32,33 @@ public class Test {
         BSTSet<String> bstSet = new BSTSet<>();
         double time1 = testSet(bstSet, filename);
         System.out.println("BSTSet : " + time1 + "s");
-
         System.out.println("************************");
 
         LinkedListSet<String> linkedListSet = new LinkedListSet<>();
         double time2 = testSet(linkedListSet, filename);
-
         System.out.println("LinkedListSet : " + time2 + "s");
+        System.out.println("************************");
+
+        AVLSet<String> avlSet = new AVLSet<>();
+        double time3 = testSet(avlSet, filename);
+        System.out.println("AVLSet : " + time3 + "s");
+        System.out.println("************************");
     }
 }
+/*
+Set/src/pride-and-prejudice.txt
+Total words:125901
+Total different words:6530
+BSTSet : 0.1803774s
+************************
+Set/src/pride-and-prejudice.txt
+Total words:125901
+Total different words:6530
+LinkedListSet : 3.4497239s
+************************
+Set/src/pride-and-prejudice.txt
+Total words:125901
+Total different words:6530
+AVLSet : 0.0967168s
+************************
+ */
